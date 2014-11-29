@@ -21,6 +21,7 @@ camera = picamera.PiCamera()
 config = ConfigParser.ConfigParser()
 sequence = 0
 
+default_resolution = (2592, 1944)
 
 def signal_handler(signal, frame):
         print("Exit")
@@ -87,7 +88,7 @@ def main():
 			print "Using resolution %sx%s" % (int( config.get('capture', 'width') ), int( config.get('capture', 'height') ))
 		except:
 			camera.resolution = (2592, 1944)
-			print "Using default resolution (2592x1944)"
+			print "Using default resolution (%dx%d)" % default_resolution
 #		time.sleep(2)
 		camera.start_preview()
 		print "Started"
