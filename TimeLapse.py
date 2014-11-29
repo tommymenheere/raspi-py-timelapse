@@ -100,4 +100,3 @@ def main():
 		camera.close()
 
 main()
-
