@@ -19,6 +19,7 @@ camera = picamera.PiCamera()
 config = ConfigParser.ConfigParser()
 sequence = 0
 
+
 default_resolution = (1920, 1080)
 
 def signal_handler(signal, frame):
@@ -55,9 +56,9 @@ def get_root():
 def capture():
 	global sequence
 	sequence += 1
+	print "Capturing %05d" % sequence
 	root = get_root()
 	path = "%s/%05d.%s"  % (root, sequence, config.get('capture', 'format'))
-	#print "Capturing to %s" % path
 	
 	if config.getboolean('overlay', 'enable'):
 		stream = io.BytesIO()
@@ -75,7 +76,7 @@ def capture():
 	else:
 		camera.capture( path, format=config.get('capture', 'format') )
 		
-	#print "Wrote file %s" % path
+	print "Wrote file %s" % path
 
 
 def read_config( file ):
